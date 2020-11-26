@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node - Узел</title>
+</head>
+<body>
+    <h1>Lorem ipsum dolor sit amet.</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, labore!<span>Lorem, ipsum dolor.</span></p>
+    <script>
+        /* 
+            alert("text") - shows the message in a modal window
+            prompt("question", "answer variant") - allows to enter the information
+            confirm("text") - allows to accept/cancel the confirmation of the information
+        */
+
+        /*
+        let name = prompt("Enter your name");
+        if (confirm(`Your name is ${name}?`)) {
+            alert("You logged in as " + name);
+        } else {
+            alert("Neither " + name + ", nor " + name + "!");
+        }
+        */
+
+        /* 
+            window objects
+                location
+                navigator
+                document - something related to html
+                    DOM - Document Object Model
+        */
+        
+        window.innerHeight
+        window.innerWidth
+        window.outerHeight
+        window.outerWidth
+
+        let htmlTag = document.lastChild;
+        let bodyTag = htmlTag.lastChild;
+        let h1 = bodyTag.childNodes[3];
+        let p = h1.nextSibling.nextSibling;
+        // console.log(h1, p);
+        let newP = p.cloneNode(true);
+        bodyTag.insertBefore(newP, h1);
+        let span = p.lastChild.previousSibling;
+        // console.log(span);
+        // console.log(span.hasChildNodes());
+        newP.appendChild(span.cloneNode(false));
+
+        console.log(span.tagName);
+        span.innerHTML = "Allocation of another tag <span style=\"color:red;font-size:20px;\">has been discovered here</span>";
+        console.log(span.innerHTML);
+    </script>
+</body>
+</html>

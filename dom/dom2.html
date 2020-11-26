@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            padding: 10px;
+            border: solid 1px;
+        }
+        .bigInt {
+            background-color: magenta;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /* 
+            With the help of innerHTML, draw a table 10x10 on the page with random numbers inside from 1 to 99;
+            All of the numbers must be 2-digit!
+            You can border the table with CSS.
+        */
+        const rand = function (ma = 100, mi = 0) {
+            return Math.floor(Math.random() * (ma - mi) + mi);
+        }
+        let cnt = 10;
+        let table = "<table>"
+        for (let i = 0; i < cnt; i++) {
+            table += "<tr>"
+            for (let j = 0; j < cnt; j++) {
+                table += "<td>";
+                let n = rand() + "";
+                if (n.length === 1) {
+                    n = "0" + n;
+                }
+                table += n;
+                table += "</td>";
+            }
+            table += "</tr>"
+        }
+        table += "</table>";
+        document.body.innerHTML += table;
+
+        // If number is > 50, tile must be in a different color
+
+        let cells = document.body.getElementsByTagName("td");
+        console.log(cells);
+        for (let i = 0; i < cells.length; i++) {
+            let value = +cells[i].innerHTML;
+            if (value > 50 && value < 65) {
+                cells[i].setAttribute("class", "bigInt");
+            } else if (value >= 65) {
+                cells[i].setAttribute("style", "background: red; color: #fff;");
+            } else {
+                cells[i].setAttribute("style", `background: rgb(${rand(255, 200)},${rand(255, 200)},${rand(255, 200)})`);
+            }
+        }
+        // Add other colors for tiles with value more than 65 and for values less than 18
+
+        // Using JavaScript, display the 2021 calendar in HTML
+    </script>
+
+</body>
+</html>

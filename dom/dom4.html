@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewYearReduce</title>
+    <style>
+        body {
+            margin: 0;
+            display: grid;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 50px;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+        article {
+            border-radius: 10px;
+            /* box-shadow: 0 1px 2px 0 rgba(0,0,0,.2); */
+            /* border: 1px dotted forestgreen; */
+        }
+        header {
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,.2);
+        }
+        main {
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+            height: calc(100% - 74px);
+            border: 1px solid rgba(0,0,0,.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font: 50px sans-serif;
+            text-align: center;
+        }
+        [data-type="time"] {
+            background: rgba(0,0,0,.2);
+            font: 30px fantasy;
+        }
+    </style>
+</head>
+<body>
+    <article></article>
+    <article></article>
+    <article></article>
+    <article></article>
+    <article data-type="time">
+        <main></main>
+        <header>left until the New Year</header>
+    </article>
+    <article></article>
+    <article></article>
+    <article></article>
+    <article></article>
+    <script>
+        /* 
+            document.querySelector("selector") - first tag
+
+            document.querySelectorAll("selector") - tag list
+        */
+        let box = document.querySelector("[data-type=\"time\"]");
+        box.lastElementChild.style.background = "rgba(255,255,255,.4)";
+        let now = new Date();
+        now = now.getTime();
+        let start = new Date(0);
+        let otherDay = new Date("2020-01-20");
+        let newYear = new Date(2021,0);
+        function dayReduce(day) {
+            let now = new Date();
+            countdown = day.getTime() - now.getTime();
+            let seconds = Math.floor(countdown / 1000);
+            let minutes = Math.floor(seconds / 60);
+            seconds -= minutes * 60;
+            let hours = Math.floor(minutes / 60);
+            minutes -= hours * 60;
+            let days = Math.floor(hours / 24);
+            hours -= days * 24;
+            return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        }
+        setInterval(() => {
+            box.firstElementChild.innerText = dayReduce(newYear);
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #super {
+            width: 300px;
+            height: 300px;
+            background: blueviolet;
+            border-radius: 20px;
+            margin: calc(50vh - 150px) auto 30px;
+        }
+        button {
+            width: 150px;
+            border: none;
+            border-radius: 20px;
+            color: blueviolet;
+            background: rgb(223, 169, 223);
+            padding: 10px 20px;
+            margin-left: 50%;
+            font: 600 20px sans-serif;
+            cursor: pointer;
+            outline: none;
+        }
+        button:hover, button:focus, button:active {
+            background: blueviolet;
+            color: rgb(223, 169, 223);
+        }
+    </style>
+</head>
+<body>
+    <div id="super"></div>
+    <button onclick="setBg()">Click</button>
+    <script>
+        /* 
+            document.getElementByTagName("div")
+            document.getElementById("super")
+        */
+        let block = document.getElementById("super");
+        /* 
+            .firstElementChild
+            .lastElementChild
+            .nextElementSibling
+            .previousElementSibling
+            .parentElement
+        */
+        let btn = block.nextElementSibling;
+        console.log(btn);
+        block.title = "Hey!";
+        // block.id = "ololo";
+        block.setAttribute("class", "pretty");
+        block.className = "pretty red";
+        block.style.backgroundColor = "blue";
+
+        const getNumber = max => Math.floor(Math.random() * max);
+        const getRGB = () => `rgb(${getNumber(256)},${getNumber(256)},${getNumber(256)})`;
+
+        const setBg = (tag=block) => {
+            tag.style.background = getRGB();
+        }
+
+        // btn.onclick = () => {
+        //     setBg(document.body);
+        // }
+        // btn.onclick = () => {
+        //     setBg();
+        // }
+
+        btn.addEventListener("click", function() {
+            setBg();
+        });
+        btn.addEventListener("click", function() {
+            setBg(document.body);
+        });
+        btn.addEventListener("click", function() {
+            console.log("Click!");
+        });
+        
+    </script>
+</body>
+</html>

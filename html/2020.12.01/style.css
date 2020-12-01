@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+}
+.child {
+    min-height: 50px;
+    background: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 teal;
+}
+.daddy {
+    padding: 50px;
+    background: thistle;
+    display: grid;
+    /* grid-template-columns: 500px 200px 70px 300px; */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px 500px 100px;
+    gap: 20px 50px;
+    grid-template-areas: "h n"
+                        "h m"
+                        "h m";
+}
+.child1 {
+    background: red;
+    grid-area: h;
+}
+.child2 {
+    background: blue;
+    grid-area: n;
+}
+.child3 {
+    background: green;
+    grid-area: m;
+}
